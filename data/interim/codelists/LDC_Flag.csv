@@ -1,0 +1,7 @@
+LDC Flag,,,Marqueur PMA,
+,,,,
+1,Exact expenditure,,1,Dépense exacte
+2,"Estimate, based on geographic breakdown of fund’s expenditures",,2,"Estimation, sur la base de la décomposition géographique des dépenses"
+3,"Estimate, based on population",,3,"Estimation, sur la base de la population"
+4,"Estimate, based on number of countries",,4,"Estimation, sur la base du nombre de pays"
+5,"Estimate, based on some other methodology",,5,"Estimation, autre méthodologie"

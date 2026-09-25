@@ -1,0 +1,10 @@
+# Large raw downloads (kept on disk w/ sha256 manifests in data/metadata/; too big for git)
+data/raw/oecd_crs/CRS.parquet
+data/raw/oecd_crs/CRS-reduced.parquet
+data/raw/aiddata/*.zip
+data/raw/oecd_dac/*.zip
+data/raw/un_wpp/*.csv.gz
+# Large interim extracts (regenerable via scripts)
+data/interim/*.parquet
+__pycache__/
+*.pyc

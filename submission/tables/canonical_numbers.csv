@@ -1,0 +1,24 @@
+key,value,unit,note
+n_dyad_years,145790.0,,
+n_recipient_years,4169.0,,
+n_countries,141.0,,
+years_min,1995.0,,
+years_max,2024.0,,
+beta_tc_w1_2_loggdppc,-0.2009,,se=0.1779 p=0.259 n=3804
+beta_tc_w3_5_loggdppc,-0.1901,,se=0.1813 p=0.295 n=3538
+beta_tc_w6_10_loggdppc,-0.5323,,se=0.2735 p=0.052 n=3143
+beta_tc_w11_15_loggdppc,-0.3992,,se=0.2508 p=0.112 n=2478
+beta_tc_w1_2_manfgdp,-4.0093,,se=2.6066 p=0.124 n=3406
+beta_tc_w3_5_manfgdp,-4.1142,,se=2.8017 p=0.142 n=3215
+beta_tc_w6_10_manfgdp,-1.5645,,se=2.3940 p=0.513 n=2911
+beta_tc_w11_15_manfgdp,1.0213,,se=2.1019 p=0.627 n=2307
+decomp_r2_full_share_aidtype_technical_cooperation,0.3496,,
+decomp_r2_full_share_aidtype_project,0.6712,,
+decomp_r2_full_share_aidtype_budget_support,0.4991,,
+decomp_r2_full_share_channel_public_recipient,0.6241,,
+decomp_r2_full_share_channel_ngo,0.4523,,
+decomp_r2_full_share_tc_usd_irtc,0.004,,
+falsify_shuffle_pct_gt_real,0.03,,
+falsify_lead_beta,-0.1476,,p=0.424
+mean_oda_pct_gdp,0.0,,
+weighted_tc_share_mean,0.0181,,

@@ -1,0 +1,2 @@
+file,url,retrieved_utc,bytes,sha256,license_note,notes
+procnotices_os0.json,https://search.worldbank.org/api/v2/procnotices,2026-09-25T12:44:54Z,2708381,0222afbf2374f6c59f41d116daf7d938fcbf9b614e8f33465417b2e67576d29d,World Bank terms of use,PARTIAL: 30000 of 420382 contract-award notices fetched (latest-first); ledger notes partial acquisition

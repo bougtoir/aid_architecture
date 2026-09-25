@@ -1,0 +1,13 @@
+source,role,access_method,format,coverage_years,geographic_coverage,unit_of_observation,stable_identifiers,update_frequency,license,missingness_breaks,measurement_definitions,join_keys,status
+OECD CRS (activity),primary,OECD SDMX API + stats.oecd.org bulk CSV,SDMX/CSV,1995-2024,DAC donors x ~150 recipients,aid activity/flow,DAC donor/recipient/sector codes,annual,OECD terms of use,grant-equiv series starts 2018; tying coverage uneven,"commitment/disb grant-equiv, sector, modality, channel, tying","donor_code,recipient_code,iso3,year",STRONG GO
+OECD DAC aggregate tables,primary,OECD SDMX API,SDMX/CSV,1960-2024,global,donor/recipient-year,DAC codes,annual,OECD,breaks at methodology changes,"net ODA, aid/GNI","iso3,dac_code,year",STRONG GO
+OECD untied-award notices,primary,OECD untied aid bulletin (manual/CSV),CSV/PDF,2004-,DAC donors,contract award,project id,ongoing,OECD,incomplete donor reporting,"supplier name/country, contract value","donor_code,recipient_code,year",GO
+WDI,primary,api.worldbank.org/v2,JSON/CSV,1960-2024,~266 economies,country-year,iso3/WB code,annual,CC-BY-4.0,sparse for fragile states,"GFCF, manuf VA, GDPpc, tax, access","iso3,year",STRONG GO
+UN WPP (dataportal),primary,population.un.org/dataportalapi,JSON/CSV,1950-2100,all countries,country-year(5yr),location id,~2yr revision,UN terms,5-year age bands,"age shares, fertility, dependency, urban","iso3,year",STRONG GO
+WB STEP/procurement notices,secondary,search.worldbank.org API,JSON,2000-,WB borrowers,contract notice,notice id,ongoing,WB terms,award coverage partial,"supplier, award amt","iso3,year",GO
+JICA IATI,secondary,IATI datastore (auth required),XML/CSV,2005-,JICA recipients,activity,iati id,annual,IATI,auth needed; coverage ok,"budget, sector","iso3,year",WEAK GO
+Australia DFAT,secondary,DFAT open data pages,CSV/XLSX,2000-,DFAT recipients,project,project id,annual,DFAT,procurement detail uneven,supplier data,"iso3,year",WEAK GO
+AidData,secondary,aiddata.org download,CSV,2000-2021,global,project,aiddata id,irregular,AidData terms,non-DAC measurement caveats,project-level aid,"iso3,year",GO
+ILOSTAT,secondary,ILOSTAT API,SDMX/CSV,1990-2024,global,country-year,ref_area,annual,ILO,endpoint unverified in audit; WDI labor indicators fallback,employment,"iso3,year",WEAK GO
+WGI,secondary,WGI download / WDI,CSV,1996-2024,global,country-year,iso3,annual,WB,perception-based,govt effectiveness,"iso3,year",GO
+EM-DAT,secondary,public.emdat.be (registration),CSV,1900-,global,event,disno,continuous,EM-DAT terms,registration wall; substitutes: CRED open summaries,disaster counts,"iso3,year",WEAK GO

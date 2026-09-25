@@ -1,0 +1,5 @@
+file,url,retrieved_utc,bytes,sha256,license_note,notes
+DAC-CRS-CODES.xlsx,https://webfs.oecd.org/oda/DataCollection/Resources/DAC-CRS-CODES.xlsx,2026-09-25T12:40:39Z,459976,eb5d320eeebb93f97f6b4a8e0ff4957cf923a4a59efa35f7bb3fab7d7c5f7b52,OECD terms of use (oecd.org/termsandconditions),CRS codelists
+crs readme_en.txt,https://webfs-dcd.oecd.org/files/dotStat/DSD_CRS/crs%20readme_en.txt,2026-09-25T12:55:26Z,1260,bc24855e8e1b47fa3f93c3b935d4e3258a4cc8c80f5280e2e01567fda95ff3c2,OECD terms of use (oecd.org/termsandconditions),CRS readme
+CRS-reduced.parquet,https://webfs-dcd.oecd.org/files/dotStat/DSD_CRS/CRS-reduced.parquet,2026-09-25T12:58:25Z,295571802,3f795d9b6ef3354ecfd1072a6b088baca7adc63952d84d6254f96abf5e3ee3ba,OECD terms of use (oecd.org/termsandconditions),Full CRS activity-level all years; code columns; fetched via browser due to Cloudflare challenge
+CRS.parquet,https://webfs-dcd.oecd.org/ddc/public/CRS/CRS.parquet,2026-09-25T13:10:09Z,1181463437,32f1e108128d2cd87cd53e684a754d3d4cf9556ddd6e90e827211d0a5a83dcfd,OECD terms,full CRS bulk file incl aid_type/TC columns

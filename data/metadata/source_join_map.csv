@@ -1,0 +1,9 @@
+source,join_keys,target_panel,method
+OECD CRS,"donor_code,recipient_code,year",master dyadic panel,direct
+OECD DAC agg,"iso3/dac_recipient,year",macro panel recipient-year,dac->iso3 map
+WDI,"iso3,year",macro panel,iso3 exact
+WPP,"iso3,year",macro panel,iso3; interpolate 5-yr bands
+OECD untied,"donor_code,recipient_code,year",procurement panel,direct + name match supplier
+WB STEP,"iso3,year(+donor=WB)",procurement panel,iso3
+WGI,"iso3,year",macro controls,iso3
+EM-DAT,"iso3,year",macro controls,iso3

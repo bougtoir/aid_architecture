@@ -1,0 +1,23 @@
+# PHASE 7 — Outcomes panel
+
+- rows: 14,322; countries: 217
+
+## Coverage (share non-missing):
+GC.TAX.TOTL.GD.ZS       0.328446
+SL.EMP.TOTL.SP.ZS       0.456012
+EG.ELC.ACCS.ZS          0.471093
+DT.ODA.ODAT.GN.ZS       0.548457
+NE.GDI.FTOT.ZS          0.567798
+NV.IND.MANF.ZS          0.576246
+NE.GDI.TOTL.ZS          0.605362
+DT.ODA.ODAT.PC.ZS       0.621910
+NE.EXP.GNFS.ZS          0.630429
+BX.KLT.DINV.WD.GD.ZS    0.649770
+NY.GDP.PCAP.KD.ZG       0.796537
+NY.GDP.MKTP.KD          0.805265
+NY.GDP.PCAP.KD          0.805265
+SP.DYN.TFRT.IN          0.982614
+SP.POP.GROW             0.982614
+SP.POP.DPND             0.997905
+SP.POP.TOTL             0.997905
+SP.URB.TOTL.IN.ZS       1.000000

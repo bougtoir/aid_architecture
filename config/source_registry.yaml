@@ -1,0 +1,63 @@
+# Source registry — entries populated with access details in Phase 2-3.
+# Status: CANDIDATE until audited; then STRONG GO / GO / WEAK GO / NO-GO.
+sources:
+  oecd_crs:
+    role: primary
+    desc: "OECD CRS activity-level aid database (all DAC donors)"
+    access: "OECD Data API / bulk CSV download"
+    status: CANDIDATE
+  oecd_dac_aggregate:
+    role: primary
+    desc: "OECD DAC aggregate ODA tables (donor/recipient totals, tying)"
+    access: "OECD Data API"
+    status: CANDIDATE
+  oecd_untied_awards:
+    role: primary
+    desc: "OECD untied aid contract award notices (supplier country)"
+    access: "OECD untied aid bulletin download"
+    status: CANDIDATE
+  wdi:
+    role: primary
+    desc: "World Bank World Development Indicators"
+    access: "WDI API v2"
+    status: CANDIDATE
+  wpp:
+    role: primary
+    desc: "UN World Population Prospects (age structure, fertility, urbanization)"
+    access: "UN WPP bulk CSV download"
+    status: CANDIDATE
+  wb_step:
+    role: secondary
+    desc: "World Bank procurement/contract awards (STEP)"
+    access: "World Bank procurement notices / finances API"
+    status: CANDIDATE
+  jica_iati:
+    role: secondary
+    desc: "JICA IATI activity data"
+    access: "IATI Datastore API"
+    status: CANDIDATE
+  dfat:
+    role: secondary
+    desc: "Australia DFAT aid performance/procurement data"
+    access: "DFAT open data pages"
+    status: CANDIDATE
+  aiddata:
+    role: secondary
+    desc: "AidData research release (GCDF / bilateral)"
+    access: "AidData download"
+    status: CANDIDATE
+  ilostat:
+    role: secondary
+    desc: "ILO labor statistics"
+    access: "ILOSTAT SDMX API"
+    status: CANDIDATE
+  wgi:
+    role: secondary
+    desc: "World Bank Worldwide Governance Indicators"
+    access: "WDI API / WGI download"
+    status: CANDIDATE
+  emdat:
+    role: secondary
+    desc: "EM-DAT disaster events"
+    access: "EM-DAT public download (registration)"
+    status: CANDIDATE

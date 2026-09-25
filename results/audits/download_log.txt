@@ -1,0 +1,37 @@
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC2/Table2a_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC2/Table3a_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC2/TotalOfficial_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC2/TotalODF_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC2/TotalReceipts_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC1/Table1_Data.zip HTTP Error 403: Forbidden
+FAIL https://webfs-dcd.oecd.org/files/dotStat/DSD_DAC1/Table5_Data.zip HTTP Error 403: Forbidden
+FAIL CRS parquet HTTP Error 403: Forbidden
+  saved data/raw/oecd_crs/DAC-CRS-CODES.xlsx 459976 bytes
+  saved data/raw/oecd_dac/Deflators-base-2024.xlsx 73097 bytes
+FAIL resource URL can't contain control characters. '/files/dotStat/DSD_CRS/crs readme_en.txt' (found at least ' ')
+  saved data/raw/wdi/NY.GDP.PCAP.KD.json 3976465 bytes
+  saved data/raw/wdi/NY.GDP.PCAP.KD.ZG.json 3998503 bytes
+  saved data/raw/wdi/NE.GDI.FTOT.ZS.json 4031504 bytes
+  saved data/raw/wdi/NV.IND.MANF.ZS.json 3975877 bytes
+  saved data/raw/wdi/NE.GDI.TOTL.ZS.json 3933124 bytes
+  saved data/raw/wdi/GC.TAX.TOTL.GD.ZS.json 3714577 bytes
+  saved data/raw/wdi/EG.ELC.ACCS.ZS.json 3908341 bytes
+  saved data/raw/wdi/SL.EMP.TOTL.SP.ZS.json 4500798 bytes
+  saved data/raw/wdi/NY.GDP.MKTP.KD.json 3783503 bytes
+  saved data/raw/wdi/NY.GNI.MKTP.CD.json 102 bytes
+  saved data/raw/wdi/NY.GNI.PCAP.CD.json 102 bytes
+  saved data/raw/wdi/SP.POP.TOTL.json 3512353 bytes
+  saved data/raw/wdi/SP.URB.TOTL.IN.ZS.json 4160580 bytes
+  saved data/raw/wdi/DT.ODA.ODAT.GN.ZS.json 3860586 bytes
+  saved data/raw/wdi/DT.ODA.ODAT.PC.ZS.json 4116799 bytes
+  saved data/raw/wdi/NE.EXP.GNFS.ZS.json 4044176 bytes
+  saved data/raw/wdi/BX.KLT.DINV.WD.GD.ZS.json 4317130 bytes
+  saved data/raw/wdi/SP.POP.GROW.json 3857854 bytes
+  saved data/raw/wdi/SP.DYN.TFRT.IN.json 3955489 bytes
+  saved data/raw/wdi/SP.POP.DPND.json 4238501 bytes
+  saved data/raw/wdi/country_metadata.json 113590 bytes
+  saved data/raw/un_wpp/WPP2024_Demographic_Indicators_Medium.csv.gz 16557272 bytes
+  saved data/raw/un_wpp/WPP2024_TotalPopulationBySex.csv.gz 16980593 bytes
+  saved data/raw/aiddata/AidDataCore_ResearchRelease_Level1_v3.1.zip 267062115 bytes
+  saved data/raw/wb_procurement/procnotices_os0.json 2708381 bytes
+Phase 3 download pass complete

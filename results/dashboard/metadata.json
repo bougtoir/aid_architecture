@@ -1,0 +1,34 @@
+{
+  "claim_level": "B (adjusted association)",
+  "design": "recipient-year two-way FE, country-clustered SEs; shares are compositional vs omitted share",
+  "reference_share": {
+    "aidtype": "debt_relief + other"
+  },
+  "lag_windows": {
+    "w1_2": "1-2y",
+    "w3_5": "3-5y",
+    "w6_10": "6-10y",
+    "w11_15": "11-15y"
+  },
+  "exposure_terms": [
+    "share_aidtype_technical_cooperation",
+    "share_aidtype_budget_support",
+    "share_aidtype_project",
+    "share_aidtype_pooled_earmarked",
+    "share_aidtype_ngo_core",
+    "share_aidtype_scholarships_students",
+    "share_aidtype_admin_refugee_awareness"
+  ],
+  "disclaimer": [
+    "Predictions are associational, NOT causal.",
+    "Scenarios reallocate shares at fixed total aid; they never rank donors.",
+    "Out-of-support portfolios are flagged."
+  ],
+  "support_rules": {
+    "iqr_multiplier": 1.5,
+    "share_bounds": [
+      0,
+      1
+    ]
+  }
+}

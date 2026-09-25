@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software or data pipeline, please cite it as below."
+title: "Aid Architecture, Local Economic Participation, and Capacity Formation: analysis pipeline"
+version: 0.1.0
+date-released: "2026-09-25"
+license: MIT
+authors:
+  - family-names: Onishi
+    given-names: Tatsuki
+url: "https://github.com/bougtoir/aid_architecture"

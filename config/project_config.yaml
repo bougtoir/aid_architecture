@@ -1,0 +1,60 @@
+project:
+  name: aid_architecture
+  working_title: "Beyond Aid Volume: Aid Architecture, Local Economic Participation, Capacity Formation, and Persistent Development Outcomes"
+  created_utc: "2026-09-25"
+  canonical_unit_macro: "recipient x year"
+  canonical_unit_dyadic: "donor x recipient x year"
+  random_seed: 20260925
+
+study_design:
+  outcome_agnostic: true
+  publishable_patterns: [A, B, C, D]   # architecture matters w/ or w/o donor effects; heterogeneity remains; null
+  claim_levels: [descriptive, adjusted_association, quasi_causal, causal]
+
+levels:
+  L0_amount: [commitments, disbursements, grant_equivalent, aid_gni, aid_per_capita]
+  L1_composition: [sector, modality, finance_type, channel]
+  L2_procurement: [tying_status, supplier_origin, contract_type, procurement_exposure]
+  L3_local_participation: [recipient_prime_supplier, local_subcontract, local_workers, local_wages]
+  L4_capacity: [gfcf, domestic_investment, manufacturing_va, infrastructure_access, export_diversification, fiscal_capacity, employment]
+  L5_persistent: [productivity, real_gdppc, long_run_growth, poverty]
+
+demographic_adjustment_sets:
+  A_parsimonious: [working_age_share_baseline, population_growth]
+  B_age_spline: [share_0_14, share_15_24, share_25_54, share_55_64, share_65plus]
+  C_sensitivity: [total_dependency_ratio, fertility, urbanization]
+
+lag_windows_years: {short: [1,2], medium: [3,5], long: [6,10], very_long: [11,15]}
+
+primary_outcomes:
+  - real_gdppc
+  - gfcf_share_gdp
+  - manufacturing_va_share_gdp
+secondary_outcomes:
+  - tax_revenue_share_gdp
+  - electricity_access
+  - employment_to_population
+  - export_diversification
+
+falsification_suite:
+  - future_aid_past_outcome
+  - pre_trends
+  - placebo_dates
+  - conflict_exclusion
+  - disaster_exclusion
+  - commodity_shock_adjustment
+  - resource_rich_exclusion
+  - fragile_state_stratification
+  - leave_one_donor_out
+  - leave_one_region_out
+  - leave_one_large_recipient_out
+  - alternative_aid_normalization
+  - commitment_vs_disbursement
+  - dyadic_fe
+  - alternative_lag_windows
+
+dashboard:
+  hold_total_aid_constant: true
+  never_present_donor_rankings: true
+  never_label_associational_as_causal: true
+  support_classes: [well_supported, limited_support, extrapolation]

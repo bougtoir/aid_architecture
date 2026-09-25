@@ -1,0 +1,70 @@
+# Variable ontology — frozen BEFORE outcome-model fitting.
+# Levels keep aid amount / composition / procurement / participation / outcomes separate.
+keys:
+  donor_code: {description: "OECD DAC donor code (bi/multi)", type: str}
+  recipient_code: {description: "OECD DAC recipient country code", type: str}
+  iso3: {description: "ISO-3166 alpha-3 country code", type: str}
+  year: {description: "calendar year", type: int}
+  pair_id: {description: "donor_code x recipient_code dyad", type: str}
+
+L0_amount:
+  aid_commit_usd: {def: "ODA commitments, constant USD", source: OECD_CRS, unit: USD_2021}
+  aid_disb_usd: {def: "ODA gross disbursements, constant USD", source: OECD_CRS, unit: USD_2021}
+  aid_ge_usd: {def: "grant-equivalent ODA where reported", source: OECD_CRS}
+  aid_gni: {def: "net ODA received / GNI", source: "OECD_DAC+WDI", unit: ratio}
+  aid_pc: {def: "net ODA received per capita", source: "OECD_DAC+WPP"}
+
+L1_composition:
+  share_sector_{k}: {def: "disbursement share in sector k", sectors: [infrastructure, health, education, agriculture, productive, energy, governance, humanitarian, environment, other]}
+  share_modality_{k}: {def: "project_type, budget_support, tech_cooperation, scholarships, core_contrib, debt_relief"}
+  share_finance_{k}: {def: "grants, concessional_loans, other"}
+  share_channel_{k}: {def: "recipient_gov, ngo, multilateral, private_sector, university, other}
+
+L2_procurement:
+  share_tied: {def: "tied share of covered ODA", source: OECD_CRS}
+  share_partially_tied: {}
+  share_untied: {}
+  lps_value: {def: "Local Procurement Share by contract value: supplier country == recipient country", source: "OECD awards / WB STEP / donor sources", caution: "registration country != domestic value added"}
+  lps_count: {def: "LPS by contract count"}
+  dss: {def: "Donor Supplier Share (supplier country == donor country)"}
+  tcs: {def: "Third-Country Supplier Share"}
+
+L3_participation:
+  local_subcontract_share: {def: "share subcontracted to local firms where reported"}
+  local_wage_share: {def: "share of contract value paid as local wages where reported"}
+  local_personnel_share: {def: "share of project personnel locally employed where reported"}
+
+L4_capacity:
+  gfcf_share_gdp: {wdi: NE.GDI.FTOT.ZS}
+  manufacturing_va_share_gdp: {wdi: NV.IND.MANF.ZS}
+  domestic_investment: {wdi: NE.GDI.TOTL.ZS}
+  tax_revenue_share_gdp: {wdi: GC.TAX.TOTL.GD.ZS}
+  electricity_access: {wdi: EG.ELC.ACCS.ZS}
+  employment_to_population: {source: ILOSTAT/WDI SL.EMP.TOTL.SP.ZS}
+  export_diversification: {def: "Theil/HHI of export basket where computable"}
+
+L5_persistent:
+  real_gdppc: {wdi: NY.GDP.PCAP.KD}
+  gdppc_growth: {wdi: NY.GDP.PCAP.KD.ZG}
+  tfp_proxy: {def: "Solow-style residual where computable; else omitted"}
+
+demography_WPP:
+  pop_total: {}
+  share_0_14: {}
+  share_15_24: {}
+  share_25_54: {}
+  share_55_64: {}
+  share_65plus: {}
+  working_age_share: {def: "share_15_24 + share_25_54 + share_55_64"}
+  youth_dep: {}
+  old_dep: {}
+  total_dependency_ratio: {}
+  fertility: {}
+  pop_growth: {}
+  urbanization: {source: "WPP/WDI SP.URB.TOTL.IN.ZS"}
+
+controls:
+  conflict: {source: "UCDP/ACLED via public flag or WDI proxy"}
+  disaster: {source: "EM-DAT counts/exposure"}
+  commodity_terms: {source: "WDI terms-of-trade / IMF PCPS"}
+  institutional_capacity: {source: "WGI averages"}
