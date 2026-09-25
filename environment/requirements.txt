@@ -8,3 +8,4 @@ pyarrow
 pyyaml
 requests
 python-docx
+tabulate
