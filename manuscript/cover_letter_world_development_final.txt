@@ -1,0 +1,12 @@
+Dear Editors,
+
+We submit "Beyond Aid Volume: Donor Heterogeneity, Aid Architecture, and Medium-Run Development Outcomes" for consideration at World Development.
+
+The paper argues that nominal aid volume conceals a measurable delivery architecture — composition by aid type, channel, instrument, and tying status — and that this architecture varies substantially across donors. Using the full OECD Creditor Reporting System (145,790 donor–recipient–years), UN WPP 2024, and WDI outcomes (141 countries, 4,169 recipient-years), we build a harmonized, disbursement-weighted architecture panel and decompose its variance: donor fixed effects add 13–28 percentage points of explained variance over a recipient-and-year baseline, while for project-type shares recipient characteristics contribute comparably. Conditional on ODA per capita, we then relate architecture shares to mean outcomes over 1–2 to 11–15-year lag windows, with a falsification suite (lead placebo, pseudo-outcome, within-year permutation).
+
+This is not another aid–growth regression: the primary contribution is measurement and decomposition, and all outcome associations are reported as adjusted, non-causal associations with explicit compositional interpretation. The technical-cooperation-share finding is presented as an illustrative, imprecise result whose leading rival explanation — confounding by indication — is confronted directly. Dashboard-ready exports for fixed-total-aid scenario exploration accompany the analysis as supplementary interpretation tools, not policy calculators.
+
+We believe the paper fits World Development's interest in how development assistance actually works, and that its measurement stack and decomposition will be useful to the aid-effectiveness and donor-behavior literatures.
+
+Sincerely,
+[AUTHOR NAME — TO COMPLETE]

@@ -157,9 +157,11 @@ imprecise: conventional intervals include zero at most windows.
 
 ### 5.4 Lag structure and sensitivity
 
-Figure 3 shows TC-share coefficients by window in chronological order; the
-negative point estimates for GDP per capita do not attenuate monotonically,
-and precision narrows at longer windows. Across adjustment sets A–C the
+Figure 3 shows TC-share coefficients by window in chronological order for
+the primary outcomes (secondary outcomes — tax/GDP and electricity access —
+are in Supplement Figure S2); the negative point estimates for GDP per
+capita do not attenuate monotonically, and precision narrows at longer
+windows. Across adjustment sets A–C the
 TC coefficient on GDP per capita moves from
 -0.134 to
 -0.369 —

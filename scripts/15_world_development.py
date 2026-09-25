@@ -241,9 +241,11 @@ imprecise: conventional intervals include zero at most windows.
 
 ### 5.4 Lag structure and sensitivity
 
-Figure 3 shows TC-share coefficients by window in chronological order; the
-negative point estimates for GDP per capita do not attenuate monotonically,
-and precision narrows at longer windows. Across adjustment sets A–C the
+Figure 3 shows TC-share coefficients by window in chronological order for
+the primary outcomes (secondary outcomes — tax/GDP and electricity access —
+are in Supplement Figure S2); the negative point estimates for GDP per
+capita do not attenuate monotonically, and precision narrows at longer
+windows. Across adjustment sets A–C the
 TC coefficient on GDP per capita moves from
 {stab[(stab.outcome=='log_gdppc')&(stab.set=='A')].beta_tc.iloc[0]:.3f} to
 {stab[(stab.outcome=='log_gdppc')&(stab.set=='C')].beta_tc.iloc[0]:.3f} —
@@ -409,17 +411,23 @@ def add_df_table(doc, df):
         for j,v in enumerate(row): cs[j].text=str(v)
 
 # ---- build tables ----
+import numpy as np
+mp=pd.read_parquet("data/processed/master_panel.parquet")
+_w=mp.oda_disb_defl_usd
+def wshare(c): return f"{np.average(mp[c].fillna(0),weights=_w)*100:.1f}%"
 t1=pd.DataFrame({
  "Measure":["Donor–recipient–year observations","Recipient countries","Recipient-years","Years",
             "Mean ODA disbursed / recipient GDP","Median ODA disbursed / recipient GDP",
             "Median ODA per capita (constant US$)","Disb.-weighted TC share (modality D)",
-            "Disb.-weighted budget-support share","Disb.-weighted project-type share"],
+            "Disb.-weighted budget-support share","Disb.-weighted project-type share",
+            "Disb.-weighted pooled/earmarked share","Disb.-weighted debt-relief share"],
  "Value":[cint('n_dyad_years'),cint('n_countries'),cint('n_recipient_years'),
           f"{int(num('years_min'))}–{int(num('years_max'))}",fpct('mean_oda_pct_gdp'),
           fpct('median_oda_pct_gdp'),f"${float(num('median_oda_pc_usd')):.0f}",
           fpct('weighted_tc_share_mean'),
-          f"{don.tc_share.mean()*100:.1f}%" if False else "see Fig.2",
-          "see Fig.1"]})
+          wshare("share_aidtype_budget_support"),wshare("share_aidtype_project"),
+          wshare("share_aidtype_pooled_earmarked"),wshare("share_aidtype_debt_relief_aidtype")]})
+t1["Note"]="disbursement-weighted unless noted"
 dec2=dec.copy(); dec2["variable"]=dec2['var'].map(lambda v: VARLBL.get(v,v))
 t2=dec2[["variable","r2_recipient_year","r2_full","incr_r2_donor","incr_r2_recipient","n"]].round(3)
 t2.columns=["Architecture share","R² recipient+year FE","R² +donor FE","Incremental R² donor","Incremental R² recipient","n"]
@@ -428,12 +436,31 @@ for o,lbl in [("log_gdppc","log real GDP per capita"),("manf_gdp","Manufacturing
               ("gfcf_gdp","GFCF / GDP"),("tax_gdp","Tax revenue / GDP"),("elec_access","Electricity access")]:
     t3rows.append([lbl]+coef_line("share_aidtype_technical_cooperation",o))
 t3=pd.DataFrame(t3rows,columns=["Outcome","1–2 y","3–5 y","6–10 y","11–15 y"])
-t4=falt[["test","estimand","observed","reference","uncertainty","interpretation"]]
-t4.columns=["Test","Estimand","Observed","Null/reference","Uncertainty","Interpretation"]
+t4=falt.rename(columns={"test":"Test","estimand":"Target estimand","observed":"Observed result",
+ "reference":"Null/reference","interpretation":"Interpretation"})[["Test","Target estimand","Observed result","Null/reference","Interpretation"]]
 
+# regenerate Figure 3 with primary outcomes only; secondary outcomes to supplement
+import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
+g=res[(res.xset=="aidtype")&(res.term=="share_aidtype_technical_cooperation")].copy()
+WORDER=["w1_2","w3_5","w6_10","w11_15"]
+WLBL2={"w1_2":"1–2 y","w3_5":"3–5 y","w6_10":"6–10 y","w11_15":"11–15 y"}
+OLBL={"log_gdppc":"log real GDP per capita","gfcf_gdp":"GFCF / GDP","manf_gdp":"Manufacturing VA / GDP",
+      "tax_gdp":"Tax revenue / GDP","elec_access":"Electricity access"}
+def _fig3(outcomes, path):
+    fig,ax=plt.subplots(figsize=(6.2,3.6))
+    for o in outcomes:
+        gg=g[g.outcome==o].set_index("window").reindex(WORDER)
+        ax.errorbar(range(4),gg.beta,yerr=1.96*gg.se,marker='o',capsize=3,label=OLBL[o])
+    ax.set_xticks(range(4)); ax.set_xticklabels([WLBL2[w] for w in WORDER])
+    ax.axhline(0,ls='--',c='gray'); ax.legend(fontsize=9)
+    ax.set_xlabel("Outcome window after exposure year")
+    ax.set_ylabel("β per unit TC share (vs omitted aid-type composition)")
+    plt.tight_layout(); plt.savefig(path,dpi=200); plt.close()
+_fig3(["log_gdppc","gfcf_gdp","manf_gdp"],"results/figures/fig_coef_tc_windows.png")
+_fig3(["tax_gdp","elec_access"],"results/figures/fig_coef_tc_windows_secondary.png")
 FIGS=[("results/figures/fig_architecture_trends.png","Figure 1. Disbursement-weighted aid-type and channel shares over time."),
       ("results/figures/fig_donor_architecture.png","Figure 2. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied)."),
-      ("results/figures/fig_coef_tc_windows.png","Figure 3. Technical-cooperation-share coefficients by outcome window (vs omitted aid-type composition; 95% CI).")]
+      ("results/figures/fig_coef_tc_windows.png","Figure 3. Technical-cooperation-share coefficients on primary outcomes by outcome window (compositional contrast vs the omitted aid-type composition; 95% CI). Secondary outcomes in Figure S2.")]
 
 def build(path, include_tables=True, include_figs=True):
     doc=styled_doc(); md_to_doc(doc,MD)
@@ -455,8 +482,8 @@ def build(path, include_tables=True, include_figs=True):
     doc.save(path); print(path,os.path.getsize(path))
 
 # unblinded = same text (no author block fabricated) + note; blinded identical
-build("manuscript/world_development_manuscript.docx")
-build("manuscript/world_development_blinded.docx")
+build("manuscript/world_development_manuscript_final.docx")
+build("manuscript/world_development_blinded_final.docx")
 
 # title page
 tp=styled_doc()
@@ -487,7 +514,10 @@ add_df_table(sup,fal.round(4))
 sup.add_paragraph("Figure S1. Distribution of ODA disbursements as a share of recipient GDP (%).")
 if os.path.exists("results/figures/fig_oda_gdp_hist.png"):
     sup.add_picture("results/figures/fig_oda_gdp_hist.png",width=Inches(5.5))
-sup.save("manuscript/world_development_supplement.docx")
+sup.add_paragraph("Figure S2. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.")
+if os.path.exists("results/figures/fig_coef_tc_windows_secondary.png"):
+    sup.add_picture("results/figures/fig_coef_tc_windows_secondary.png",width=Inches(5.5))
+sup.save("manuscript/world_development_supplement_final.docx")
 
 # cover letter
 CL=f"""Dear Editors,
@@ -503,11 +533,11 @@ We believe the paper fits World Development's interest in how development assist
 Sincerely,
 [AUTHOR NAME — TO COMPLETE]
 """
-open("manuscript/cover_letter_world_development.txt","w").write(CL)
+open("manuscript/cover_letter_world_development_final.txt","w").write(CL)
 cl=styled_doc()
 for ln in CL.split("\n"):
     if ln.strip(): cl.add_paragraph(ln.strip())
-cl.save("manuscript/cover_letter_world_development.docx")
+cl.save("manuscript/cover_letter_world_development_final.docx")
 
 # highlights (<=125 chars without spaces)
 HL=["Aid volume conceals a measurable delivery architecture that varies systematically across donors",
@@ -516,20 +546,20 @@ HL=["Aid volume conceals a measurable delivery architecture that varies systemat
     "TC-share associations with medium-run outcomes are negative but imprecise and non-causal",
     "Fixed-total-aid scenario exports let readers explore compositional reallocations"]
 for h in HL: assert len(h.replace(" ",""))<=125, h
-open("manuscript/highlights.txt","w").write("\n".join(f"- {h}" for h in HL)+"\n")
+open("manuscript/highlights_final.txt","w").write("\n".join(f"- {h}" for h in HL)+"\n")
 
 DA=MD.split("## Data availability statement")[1].split("## References")[0].strip()
-open("manuscript/data_availability_statement.txt","w").write(DA+"\n")
+open("manuscript/data_availability_statement_final.txt","w").write(DA+"\n")
 
 # zip package
-zf=zipfile.ZipFile("submission/world_development_submission_package.zip","w",zipfile.ZIP_DEFLATED)
-for f in ["manuscript/world_development_blinded.docx","manuscript/world_development_manuscript.docx",
-          "manuscript/world_development_title_page.docx","manuscript/world_development_supplement.docx",
-          "manuscript/cover_letter_world_development.docx","manuscript/cover_letter_world_development.txt",
-          "manuscript/highlights.txt","manuscript/data_availability_statement.txt",
+zf=zipfile.ZipFile("submission/world_development_submission_package_FINAL.zip","w",zipfile.ZIP_DEFLATED)
+for f in ["manuscript/world_development_blinded_final.docx","manuscript/world_development_manuscript_final.docx",
+          "manuscript/world_development_title_page.docx","manuscript/world_development_supplement_final.docx",
+          "manuscript/cover_letter_world_development_final.docx","manuscript/cover_letter_world_development_final.txt",
+          "manuscript/highlights_final.txt","manuscript/data_availability_statement_final.txt",
           "results/figures/fig_architecture_trends.png","results/figures/fig_donor_architecture.png",
-          "results/figures/fig_coef_tc_windows.png","results/figures/fig_oda_gdp_hist.png"]:
+          "results/figures/fig_coef_tc_windows.png","results/figures/fig_oda_gdp_hist.png","results/figures/fig_coef_tc_windows_secondary.png"]:
     zf.write(f, os.path.basename(f) if "figures" not in f else "figures/"+os.path.basename(f))
 zf.close()
-print("zip",os.path.getsize("submission/world_development_submission_package.zip"))
+print("zip",os.path.getsize("submission/world_development_submission_package_FINAL.zip"))
 print("abstract words:",len(ABSTRACT.split()))
