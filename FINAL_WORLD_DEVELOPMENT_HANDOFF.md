@@ -84,9 +84,7 @@ manuscripts, title page, supplement, cover letter, highlights, data
 statement, figures/ ×4. No audits, scratch files, or raw restricted data.
 
 ## 15. Exact git commit
-Recorded below in commit history (wip branch
-devin/1790338560-aid-architecture-clean; public bougtoir/aid_architecture
-main synced via subtree).
+wip commit e500b95aeab55f27085bdfdca88813de0b89719b (branch devin/1790338560-aid-architecture-clean); public bougtoir/aid_architecture main = subtree commit 2630ec26.
 
 ## ANALYSIS STATUS
 - frozen; targeted reruns only (none this pass — presentation only);
