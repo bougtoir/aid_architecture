@@ -1,0 +1,5 @@
+- Aid volume conceals a measurable delivery architecture that varies systematically across donors
+- Donor fixed effects add 13-28pp of explained variance in recipient aid architecture
+- Recipient context contributes comparably to project-type architecture shares
+- TC-share associations with medium-run outcomes are negative but imprecise and non-causal
+- Fixed-total-aid scenario exports let readers explore compositional reallocations

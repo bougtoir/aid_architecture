@@ -1,0 +1,7 @@
+All data are public: OECD Creditor Reporting System and DAC tables (OECD),
+World Development Indicators (World Bank), World Population Prospects 2024
+(United Nations), AidData 3.1, and World Bank procurement notices.
+Raw-source acquisition scripts, provenance manifests, panel-construction
+and analysis code, and dashboard-ready exports are available in the
+project repository (link on title page). Source terms of use apply;
+proprietary or access-restricted microdata are not redistributed.
