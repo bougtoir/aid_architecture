@@ -108,6 +108,8 @@ if len(f): add("falsify_shuffle_pct_gt_real",float(f.pct_gt_real.iloc[0]))
 f2=fal[fal.test=="lead_placebo"]
 if len(f2): add("falsify_lead_beta",round(float(f2.beta.iloc[0]),4),note=f"p={f2.p.iloc[0]:.3f}")
 add("mean_oda_pct_gdp",round(float(m.oda_pct_gdp.mean()),4))
+add("median_oda_pct_gdp",round(float(m.oda_pct_gdp.median()),4))
+add("median_oda_pc_usd",round(float(m.oda_pc_usd.median()),2))
 add("weighted_tc_share_mean",round(float(np.average(m.share_aidtype_technical_cooperation.fillna(0),weights=m.oda_disb_defl_usd)),4))
 pd.DataFrame(cn).to_csv("results/tables/canonical_numbers.csv",index=False)
 open("results/audits/PHASE_20_CANONICAL_NUMBERS.md","w").write(

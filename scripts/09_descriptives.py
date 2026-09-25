@@ -46,17 +46,25 @@ for c,new in [("share_aidtype_technical_cooperation","tc_share"),
 dd = sub.groupby("donor_name").agg(vol=("oda_disb_defl_usd","sum"),
     tc_share=("_w_tc_share","sum"), govt_share=("_w_govt_share","sum"), untied=("_w_untied","sum"))
 dd[["tc_share","govt_share","untied"]] = dd[["tc_share","govt_share","untied"]].div(dd.vol, axis=0)
-dd["vol_bn"] = dd.vol/1e9
+dd["vol_bn"] = dd.vol/1e3  # CRS amounts are USD millions
 dd = dd.sort_values("vol_bn", ascending=False)
 dd.to_csv("results/tables/table_donor_architecture.csv")
 
-fig, ax = plt.subplots(figsize=(8,5))
-x=np.arange(len(dd))
-ax.bar(x, dd.govt_share, label="recipient-govt channel")
-ax.bar(x, dd.tc_share, bottom=dd.govt_share, label="technical cooperation")
-ax.set_xticks(x); ax.set_xticklabels(dd.index, rotation=60, ha="right", fontsize=8)
-ax.set_ylabel("share of disbursed ODA"); ax.legend()
-plt.tight_layout(); plt.savefig("results/figures/fig_donor_architecture.png", dpi=150); plt.close()
+# Figure 2: heatmap of architecture shares for top-20 donors (no quality ranking)
+import matplotlib.colors as mcolors
+fig, ax = plt.subplots(figsize=(8,6))
+mat = dd[["govt_share","tc_share","untied"]]
+im = ax.imshow(mat.values, aspect="auto", cmap="viridis", vmin=0, vmax=1)
+ax.set_xticks(range(mat.shape[1])); ax.set_xticklabels(["Recipient-govt channel","Technical cooperation","Untied (reported)"], fontsize=9)
+ax.set_yticks(range(len(mat))); ax.set_yticklabels(mat.index, fontsize=8)
+for i in range(mat.shape[0]):
+    for j in range(mat.shape[1]):
+        v=mat.values[i,j]
+        ax.text(j,i,f"{v:.2f}",ha="center",va="center",
+                color="white" if v<0.6 else "black",fontsize=7)
+ax.set_title("Aid-architecture shares of top-20 donors by ODA volume (disbursement-weighted)")
+plt.colorbar(im, label="share of disbursed ODA")
+plt.tight_layout(); plt.savefig("results/figures/fig_donor_architecture.png", dpi=200); plt.close()
 
 # aid/GDP distribution
 fig, ax = plt.subplots(figsize=(6,4))

@@ -22,12 +22,18 @@ rec = rec[["recipient_code","iso3","Region","DAC_IncomeGroup","LandLocked","SIDS
 rec["recipient_code"] = rec["recipient_code"].astype(int)
 
 # ---- donor code -> ISO3 ----
-don = pd.read_csv("data/interim/codelists/Donor.csv", header=None, skiprows=4)
+don = pd.read_csv("data/interim/codelists/Donor.csv", header=None, skiprows=3)
 don.columns = [f"c{i}" for i in range(don.shape[1])]
-don = don[don["c0"].apply(lambda x: str(x).strip().isdigit())]
-donor_map = don[["c0","c1","c2"]].rename(columns={"c0":"donor_code","c1":"donor_iso","c2":"donor_name"})
+def _panel(off):
+    p = don[[f"c{off}",f"c{off+1}",f"c{off+2}"]].copy()
+    p.columns = ["donor_code","donor_iso","donor_name"]
+    p["donor_code"] = pd.to_numeric(p.donor_code, errors="coerce")
+    return p.dropna(subset=["donor_code","donor_name"])
+donor_map = pd.concat([_panel(o) for o in (0,5,10,15) if f"c{o+2}" in don.columns])
 donor_map["donor_code"] = donor_map["donor_code"].astype(int)
+donor_map["donor_iso"] = donor_map["donor_iso"].astype(str).str.strip()
 donor_map["donor_name"] = donor_map["donor_name"].astype(str).str.strip()
+donor_map = donor_map.drop_duplicates("donor_code")
 
 # ---- sector mapping ----
 def sector_group(sc):

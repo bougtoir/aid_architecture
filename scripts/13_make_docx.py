@@ -9,7 +9,8 @@ from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 MD = "manuscript/manuscript_draft.md"
-OUT = "manuscript/manuscript_inline.docx"
+OUT = "manuscript/manuscript_inline_revised.docx"
+OUT_BLIND = "manuscript/manuscript_blinded_revised.docx"
 
 FIGS = {
  "fig_architecture_trends.png": ("results/figures/fig_architecture_trends.png",
@@ -76,3 +77,37 @@ for f,(path,cap) in FIGS.items():
 
 doc.save(OUT)
 print(OUT, os.path.getsize(OUT))
+doc.save(OUT_BLIND)  # no author-identifying content present in draft
+print(OUT_BLIND, os.path.getsize(OUT_BLIND))
+
+# ---- supplement: key tables ----
+import pandas as pd
+sup = Document()
+st = sup.styles["Normal"]; st.font.name="Times New Roman"; st.font.size=Pt(10)
+sup.add_heading("Supplementary Materials — Beyond Aid Volume (revised)", level=0)
+
+def add_table(title, df, cols=None, maxrows=None):
+    sup.add_heading(title, level=2)
+    if cols: df = df[cols]
+    if maxrows: df = df.head(maxrows)
+    df = df.round(4)
+    t = sup.add_table(rows=1, cols=len(df.columns)); t.style="Table Grid"
+    for j,c in enumerate(df.columns): t.rows[0].cells[j].text=str(c)
+    for _,row in df.iterrows():
+        cells=t.add_row().cells
+        for j,v in enumerate(row): cells[j].text=str(v)
+
+res = pd.read_csv("results/tables/model_coefficients_all.csv")
+add_table("S1. Technical-cooperation share coefficients, all windows and outcomes",
+    res[res.term=="share_aidtype_technical_cooperation"].sort_values(["xset","outcome","window"]),
+    ["xset","term","outcome","window","beta","se","p","n"])
+add_table("S2. Donor/recipient decomposition of architecture shares (incremental R²)",
+    pd.read_csv("results/tables/donor_decomposition.csv"))
+add_table("S3. Falsification suite",
+    pd.read_csv("results/tables/falsification_results.csv"))
+add_table("S4. Adjustment-set sensitivity (TC share)",
+    pd.read_csv("results/tables/adjustment_stability.csv"))
+add_table("S5. Canonical numbers",
+    pd.read_csv("results/tables/canonical_numbers.csv"))
+sup.save("manuscript/supplement_revised.docx")
+print("manuscript/supplement_revised.docx", os.path.getsize("manuscript/supplement_revised.docx"))

@@ -13,8 +13,10 @@ master = (a.merge(dem, on=["iso3","year"], how="left")
            .merge(out.drop(columns=["iso2Code","country_name"], errors="ignore"),
                   on=["iso3","year"], how="left"))
 
-master["oda_pc_usd"] = master.oda_disb_defl_usd / (master.pop_total_1000*1000)
-master["oda_pct_gdp"] = master.oda_disb_defl_usd / master["NY.GDP.MKTP.KD"]
+# CRS disbursement columns are in USD MILLIONS (constant, DAC-deflator base);
+# NY.GDP.MKTP.KD is constant 2015 US$ dollars -> multiply by 1e6.
+master["oda_pc_usd"] = master.oda_disb_defl_usd*1e6 / (master.pop_total_1000*1000)
+master["oda_pct_gdp"] = master.oda_disb_defl_usd*1e6 / master["NY.GDP.MKTP.KD"]
 master["lny_gdppc"] = np.log(master["NY.GDP.PCAP.KD"])
 master["ln_oda_pc"] = np.log(master.oda_pc_usd.clip(lower=0.001))
 

@@ -1,0 +1,4 @@
+test,estimand,observed,reference,uncertainty,interpretation
+lead_placebo,β of aid-type shares measured t+3 vs outcome window mean (w3_5),"β=-0.230, p=0.166, n=3542",future architecture should not predict current-period outcomes,country-clustered SE,Compatible with zero; no reverse-timing artifact detected.
+pseudo_outcome_urban,β of aid-type shares on urban-population share (outcome architecture cannot affect),"all aid-type terms insignificant (min p=0.158, n=3,608)",null association expected,country-clustered SE,Passed; no mechanical share-construction artifact.
+shuffle_placebo,"β_TC (log GDP pc, w3_5) vs 200 within-year permuted allocations",real β=-0.203; share of permutations with |β|≥|β_obs| = 0.02,"exchangeable benchmark: permutation mean -0.0026, sd 0.083",one-sided extremeness share over 200 draws (seed 20260925); not a conventional p-value,"Only ~2% of permuted compositions are as extreme; rules out parameterization artifacts, not selection."

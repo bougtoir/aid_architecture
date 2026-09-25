@@ -99,8 +99,16 @@ for v in ["share_aidtype_technical_cooperation","share_aidtype_project",
     Xd=pd.concat([X,Xt],axis=1).astype(float)
     mfull=sm.WLS(sub2[v],sm.add_constant(Xall),weights=w).fit()
     mdon=sm.WLS(sub2[v],sm.add_constant(Xd),weights=w).fit()
+    mrec=sm.WLS(sub2[v],sm.add_constant(pd.concat([Xr,Xt],axis=1).astype(float)),weights=w).fit()
+    mtyr=sm.WLS(sub2[v],sm.add_constant(Xt.astype(float)),weights=w).fit()
     m0=sm.WLS(sub2[v],np.ones((len(sub2),1)),weights=w).fit()
-    rows.append({"var":v,"r2_full":mfull.rsquared,"r2_donoronly":mdon.rsquared,
+    rows.append({"var":v,"r2_full":mfull.rsquared,
+                 "r2_donoronly":mdon.rsquared,
+                 "r2_recipient_year":mrec.rsquared,
+                 "r2_year_only":mtyr.rsquared,
+                 "incr_r2_donor":mfull.rsquared-mrec.rsquared,
+                 "incr_r2_recipient":mfull.rsquared-mdon.rsquared,
+                 "incr_r2_donor_vs_year":mdon.rsquared-mtyr.rsquared,
                  "r2_null":m0.rsquared,"n":len(sub2)})
 dec=pd.DataFrame(rows)
 dec.to_csv("results/tables/donor_decomposition.csv",index=False)
