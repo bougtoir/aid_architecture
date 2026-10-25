@@ -39,3 +39,27 @@ all corrections automatically.
   (journal merged into title; str-vs-float year compare) do not affect the
   evidence table itself.
 - All remaining DOIs resolve to the cited work.
+
+## Addendum — word-count expansion revision (2026-10-25)
+
+The World Development word-count expansion added citations to the
+manuscript. All added works were drawn exclusively from the pre-verified
+pool in data/metadata/literature_evidence_table.csv (L01–L50); no new
+works were introduced and no DOI was re-queried, since every cited DOI had
+already been checked against api.crossref.org in the original pass.
+
+Status of all 38 works now cited in the manuscript:
+- 35 verified against Crossref (title/container/year match).
+- 3 correctly labeled grey literature with no journal DOI (L28 Clay et al.
+  OECD untying evaluation; L29 Jepma aid-tying report; L44 Gehring et al.
+  AidData/CGIT comparison). These support only descriptive/sourcing claims.
+- Known legitimate asterisk: L27 (Morrissey & White, The Manchester School
+  1996) — the literal title "EVALUATING THE CONCESSIONALITY OF TIED AID*"
+  is the publisher's canonical Crossref title; retained verbatim and
+  documented in FINAL_SUBMISSION_QC_GATE.md row 20.11.
+
+Vancouver renumbering is automatic: the manuscript interpolates citation
+numbers via the ref() helper ordered by first appearance, so added
+citations renumbered all downstream references consistently. Post-build
+check confirms bibliography order == first-appearance order == 1..38,
+with zero uncited bibliography entries and zero dangling citations.
