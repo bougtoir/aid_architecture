@@ -478,7 +478,7 @@ multilateral implementation carries the largest average share
 split between government, NGO, multilateral, and other implementation
 differs widely across dyads and years — precisely the variation the
 decomposition and the outcome regressions exploit. The ODA/GDP
-histogram is relegated to the Supplement (Figure S1).
+histogram is shown in Figure A1 (Appendix).
 
 ### 5.2 Donor heterogeneity and the decomposition of architecture
 
@@ -512,8 +512,8 @@ the recipient dimension contributes comparably (incremental recipient R²
 independently predicts the modality mix, consistent with recipients
 differing in implementation capacity, in the projects they can host, and
 in the terms they negotiate. The full donor- and recipient-side
-decomposition for every margin is reported in the Supplement
-(Table S2). Architecture is therefore jointly produced —
+decomposition for every margin is reported in full (Table A1, Appendix).
+Architecture is therefore jointly produced —
 supplied in systematically different forms by different donors, and
 filtered by recipient context — rather than dictated by either side.
 
@@ -529,8 +529,8 @@ the modality-level TC share does exhibit.
 
 Table 3 reports the technical-cooperation-share coefficients across lag
 windows for the primary outcomes; the full 320-coefficient grid over all
-architecture margins, outcomes, windows, and adjustment sets is in the
-Supplement (Table S1). We focus on the TC share because it is the
+architecture margins, outcomes, windows, and adjustment sets is
+reported in Table A2 (Appendix). We focus on the TC share because it is the
 sharpest architectural contrast the data offer: a modality whose stated
 purpose is capacity transfer, measured separately from the
 capacity-relevant question of who implements the underlying projects.
@@ -574,7 +574,7 @@ Discussion.
 
 Figure 3 shows TC-share coefficients by window in chronological order for
 the primary outcomes (secondary outcomes — tax/GDP and electricity access —
-are in Supplement Figure S2). Two descriptive features stand out. First,
+are shown in Figure A2 (Appendix). Two descriptive features stand out. First,
 the negative point estimates for GDP per capita do not attenuate
 monotonically with horizon: the 6–10-year point estimate is the most
 negative, and we do not read a clean temporal mechanism into the pattern —
@@ -596,7 +596,7 @@ as directional stability, not robustness: the intervals remain broad in
 every adjustment set, and stability of the point-estimate sign is
 consistent both with a weak underlying association and with a stable
 selection pattern. The full adjustment-set sensitivity grid is in the
-Supplement (Table S3).
+sensitivity grid is reported in Table A3 (Appendix).
 
 ### 5.5 Falsification
 
@@ -619,7 +619,7 @@ the same machinery produces on randomly reassigned — but real —
 architecture portfolios. Crucially it does not rule out confounding by
 indication, because the permutation preserves the mapping from
 architecture to whatever recipient characteristics originally attracted
-it. The complete falsification results are in the Supplement (Table S4).
+it. The complete falsification results are reported in Table A4 (Appendix).
 
 ### 5.6 Procurement linkage (exploratory)
 

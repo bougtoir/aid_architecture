@@ -575,7 +575,7 @@ multilateral implementation carries the largest average share
 split between government, NGO, multilateral, and other implementation
 differs widely across dyads and years — precisely the variation the
 decomposition and the outcome regressions exploit. The ODA/GDP
-histogram is relegated to the Supplement (Figure S1).
+histogram is shown in Figure A1 (Appendix).
 
 ### 5.2 Donor heterogeneity and the decomposition of architecture
 
@@ -609,8 +609,8 @@ the recipient dimension contributes comparably (incremental recipient R²
 independently predicts the modality mix, consistent with recipients
 differing in implementation capacity, in the projects they can host, and
 in the terms they negotiate. The full donor- and recipient-side
-decomposition for every margin is reported in the Supplement
-(Table S2). Architecture is therefore jointly produced —
+decomposition for every margin is reported in full (Table A1, Appendix).
+Architecture is therefore jointly produced —
 supplied in systematically different forms by different donors, and
 filtered by recipient context — rather than dictated by either side.
 
@@ -626,8 +626,8 @@ the modality-level TC share does exhibit.
 
 Table 3 reports the technical-cooperation-share coefficients across lag
 windows for the primary outcomes; the full 320-coefficient grid over all
-architecture margins, outcomes, windows, and adjustment sets is in the
-Supplement (Table S1). We focus on the TC share because it is the
+architecture margins, outcomes, windows, and adjustment sets is
+reported in Table A2 (Appendix). We focus on the TC share because it is the
 sharpest architectural contrast the data offer: a modality whose stated
 purpose is capacity transfer, measured separately from the
 capacity-relevant question of who implements the underlying projects.
@@ -671,7 +671,7 @@ Discussion.
 
 Figure 3 shows TC-share coefficients by window in chronological order for
 the primary outcomes (secondary outcomes — tax/GDP and electricity access —
-are in Supplement Figure S2). Two descriptive features stand out. First,
+are shown in Figure A2 (Appendix). Two descriptive features stand out. First,
 the negative point estimates for GDP per capita do not attenuate
 monotonically with horizon: the 6–10-year point estimate is the most
 negative, and we do not read a clean temporal mechanism into the pattern —
@@ -693,7 +693,7 @@ as directional stability, not robustness: the intervals remain broad in
 every adjustment set, and stability of the point-estimate sign is
 consistent both with a weak underlying association and with a stable
 selection pattern. The full adjustment-set sensitivity grid is in the
-Supplement (Table S3).
+sensitivity grid is reported in Table A3 (Appendix).
 
 ### 5.5 Falsification
 
@@ -716,7 +716,7 @@ the same machinery produces on randomly reassigned — but real —
 architecture portfolios. Crucially it does not rule out confounding by
 indication, because the permutation preserves the mapping from
 architecture to whatever recipient characteristics originally attracted
-it. The complete falsification results are in the Supplement (Table S4).
+it. The complete falsification results are reported in Table A4 (Appendix).
 
 ### 5.6 Procurement linkage (exploratory)
 
@@ -1101,7 +1101,9 @@ _fig3(["log_gdppc","gfcf_gdp","manf_gdp"],"results/figures/fig_coef_tc_windows.p
 _fig3(["tax_gdp","elec_access"],"results/figures/fig_coef_tc_windows_secondary.png")
 FIGS=[("results/figures/fig_architecture_trends.png","Figure 1. Disbursement-weighted aid-type and channel shares over time."),
       ("results/figures/fig_donor_architecture.png","Figure 2. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied)."),
-      ("results/figures/fig_coef_tc_windows.png","Figure 3. Technical-cooperation-share coefficients on primary outcomes by outcome window (compositional contrast vs the omitted aid-type composition; 95% CI). Secondary outcomes in Figure S2.")]
+      ("results/figures/fig_coef_tc_windows.png","Figure 3. Technical-cooperation-share coefficients on primary outcomes by outcome window (compositional contrast vs the omitted aid-type composition; 95% CI). Secondary outcomes in Figure A2."),
+      ("results/figures/fig_oda_gdp_hist.png","Figure A1. Distribution of ODA disbursements as a share of recipient GDP (%)."),
+      ("results/figures/fig_coef_tc_windows_secondary.png","Figure A2. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.")]
 
 def build(path, include_tables=True, include_figs=True):
     doc=styled_doc(); md_to_doc(doc,MD)
@@ -1111,6 +1113,13 @@ def build(path, include_tables=True, include_figs=True):
                        ("Table 2. Variance decomposition of architecture shares.",t2),
                        ("Table 3. TC-share coefficients by lag window (β; SE).",t3),
                        ("Table 4. Falsification suite.",t4)]:
+            doc.add_paragraph(cap).runs[0].bold=True
+            add_df_table(doc,df)
+        doc.add_heading("Appendix",level=1)
+        for cap,df in [("Table A1. Donor/recipient decomposition (full).",dec.round(4)),
+                       ("Table A2. Full coefficient grid (all terms, outcomes, windows, adjustment sets; first 60 rows).",res.head(60).round(4)),
+                       ("Table A3. Adjustment-set sensitivity.",stab.round(4)),
+                       ("Table A4. Falsification results (full).",fal.round(4))]:
             doc.add_paragraph(cap).runs[0].bold=True
             add_df_table(doc,df)
     if include_figs:
@@ -1141,24 +1150,8 @@ for ln in ["Corresponding author: [AUTHOR NAME — TO COMPLETE]",
     tp.add_paragraph(ln)
 tp.save("manuscript/world_development_title_page.docx")
 
-# supplement
-sup=styled_doc()
-sup.add_heading(f"Supplementary Materials — {TITLE}",level=0)
-sup.add_paragraph("S1. Full coefficient grid (all terms, outcomes, windows, adjustment sets):")
-add_df_table(sup,res.head(60).round(4))
-sup.add_paragraph("S2. Donor/recipient decomposition (full):")
-add_df_table(sup,dec.round(4))
-sup.add_paragraph("S3. Adjustment-set sensitivity:")
-add_df_table(sup,stab.round(4))
-sup.add_paragraph("S4. Falsification results (full):")
-add_df_table(sup,fal.round(4))
-sup.add_paragraph("Figure S1. Distribution of ODA disbursements as a share of recipient GDP (%).")
-if os.path.exists("results/figures/fig_oda_gdp_hist.png"):
-    sup.add_picture("results/figures/fig_oda_gdp_hist.png",width=Inches(5.5))
-sup.add_paragraph("Figure S2. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.")
-if os.path.exists("results/figures/fig_coef_tc_windows_secondary.png"):
-    sup.add_picture("results/figures/fig_coef_tc_windows_secondary.png",width=Inches(5.5))
-sup.save("manuscript/world_development_supplement_final.docx")
+# all supplementary content was folded into the manuscript (Tables 5-8, Figures 4-5)
+# per author decision — no separate supplement file is produced.
 
 # cover letter
 CL=f"""Dear Editors,
@@ -1195,7 +1188,7 @@ open("manuscript/data_availability_statement_final.txt","w").write(DA+"\n")
 # zip package
 zf=zipfile.ZipFile("submission/world_development_submission_package_FINAL.zip","w",zipfile.ZIP_DEFLATED)
 for f in ["manuscript/world_development_blinded_final.docx","manuscript/world_development_manuscript_final.docx",
-          "manuscript/world_development_title_page.docx","manuscript/world_development_supplement_final.docx",
+          "manuscript/world_development_title_page.docx",
           "manuscript/cover_letter_world_development_final.docx","manuscript/cover_letter_world_development_final.txt",
           "manuscript/highlights_final.txt","manuscript/data_availability_statement_final.txt",
           "results/figures/fig_architecture_trends.png","results/figures/fig_donor_architecture.png",
@@ -1213,7 +1206,6 @@ WD_WORDS=len(_main.split())
 
 shutil.copy("manuscript/world_development_manuscript_final.docx","manuscript/world_development_manuscript_resubmission.docx")
 shutil.copy("manuscript/world_development_blinded_final.docx","manuscript/world_development_blinded_resubmission.docx")
-shutil.copy("manuscript/world_development_supplement_final.docx","manuscript/world_development_supplement_resubmission.docx")
 
 RESP=f"""Dear Editorial Office,
 
@@ -1268,7 +1260,7 @@ open("results/audits/WORLD_DEVELOPMENT_WORD_COUNT_AUDIT.md","w").write(AUD)
 
 zf=zipfile.ZipFile("submission/world_development_resubmission_package.zip","w",zipfile.ZIP_DEFLATED)
 for f in ["manuscript/world_development_blinded_resubmission.docx","manuscript/world_development_manuscript_resubmission.docx",
-          "manuscript/world_development_title_page.docx","manuscript/world_development_supplement_resubmission.docx",
+          "manuscript/world_development_title_page.docx",
           "manuscript/cover_letter_world_development_final.docx","manuscript/cover_letter_world_development_final.txt",
           "manuscript/highlights_final.txt","manuscript/data_availability_statement_final.txt",
           "manuscript/editorial_office_response_word_count.txt",

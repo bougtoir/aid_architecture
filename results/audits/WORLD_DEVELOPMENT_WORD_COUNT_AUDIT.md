@@ -1,7 +1,7 @@
 # World Development word-count expansion audit
 
 - Original main-text word count (Introduction-Conclusion): ~1,660
-- Revised main-text word count (Introduction-Conclusion): 6955
+- Revised main-text word count (Introduction-Conclusion): 6960
 - Count method: whitespace-split tokens of manuscript_wd.md from the
   '## 1. Introduction' heading to the end of '## 7. Conclusion' (immediately
   before '## Data availability statement'); markdown section headings included,
@@ -31,3 +31,13 @@
   evidence table): meta-analyses and quasi-experimental aid-growth work,
   sectoral aid, Dutch-disease/manufacturing channels, donor-motives and
   transparency, AidData coverage comparison, conditionality.
+
+## Addendum — supplement folded into manuscript (2026-10-25)
+
+Per author decision the separate supplement file was removed: all
+supplementary content is now inside the manuscript as an Appendix —
+Table A1 (decomposition full), Table A2 (coefficient grid), Table A3
+(adjustment sensitivity), Table A4 (falsification full), Figure A1
+(ODA/GDP histogram), Figure A2 (secondary-outcome coefficients). All six
+items are first-mention cited in the main text; the resubmission zip no
+longer contains a supplement docx. Main text 6,960 words.
