@@ -478,11 +478,11 @@ multilateral implementation carries the largest average share
 split between government, NGO, multilateral, and other implementation
 differs widely across dyads and years — precisely the variation the
 decomposition and the outcome regressions exploit. The ODA/GDP
-histogram is shown in Figure A1 (Appendix).
+histogram is shown in Figure 2.
 
 ### 5.2 Donor heterogeneity and the decomposition of architecture
 
-Figure 2 — the paper's central exhibit — shows architecture profiles of the
+Figure 3 — the paper's central exhibit — shows architecture profiles of the
 top-20 donors by ODA volume. The differences are stark and systematic:
 some donors route the bulk of their portfolio through recipient-government
 systems while others work predominantly through multilateral or
@@ -512,7 +512,7 @@ the recipient dimension contributes comparably (incremental recipient R²
 independently predicts the modality mix, consistent with recipients
 differing in implementation capacity, in the projects they can host, and
 in the terms they negotiate. The full donor- and recipient-side
-decomposition for every margin is reported in full (Table A1, Appendix).
+decomposition for every margin is reported in full (Table 3).
 Architecture is therefore jointly produced —
 supplied in systematically different forms by different donors, and
 filtered by recipient context — rather than dictated by either side.
@@ -527,10 +527,10 @@ the modality-level TC share does exhibit.
 
 ### 5.3 Architecture and medium-run outcomes
 
-Table 3 reports the technical-cooperation-share coefficients across lag
+Table 4 reports the technical-cooperation-share coefficients across lag
 windows for the primary outcomes; the full 320-coefficient grid over all
 architecture margins, outcomes, windows, and adjustment sets is
-reported in Table A2 (Appendix). We focus on the TC share because it is the
+reported in Table 5. We focus on the TC share because it is the
 sharpest architectural contrast the data offer: a modality whose stated
 purpose is capacity transfer, measured separately from the
 capacity-relevant question of who implements the underlying projects.
@@ -572,9 +572,9 @@ Discussion.
 
 ### 5.4 Lag structure and sensitivity
 
-Figure 3 shows TC-share coefficients by window in chronological order for
+Figure 4 shows TC-share coefficients by window in chronological order for
 the primary outcomes (secondary outcomes — tax/GDP and electricity access —
-are shown in Figure A2 (Appendix). Two descriptive features stand out. First,
+are shown in Figure 5. Two descriptive features stand out. First,
 the negative point estimates for GDP per capita do not attenuate
 monotonically with horizon: the 6–10-year point estimate is the most
 negative, and we do not read a clean temporal mechanism into the pattern —
@@ -596,11 +596,11 @@ as directional stability, not robustness: the intervals remain broad in
 every adjustment set, and stability of the point-estimate sign is
 consistent both with a weak underlying association and with a stable
 selection pattern. The full adjustment-set sensitivity grid is in the
-sensitivity grid is reported in Table A3 (Appendix).
+sensitivity grid is reported in Table 6.
 
 ### 5.5 Falsification
 
-Table 4 summarizes the pre-registered suite. A lead placebo (architecture
+Table 7 summarizes the pre-registered suite. A lead placebo (architecture
 measured three years after the outcome window) yields β = -0.230
 (p = 0.166), compatible with zero — future architecture does not
 "explain" past outcomes, so the primary specification is not simply
@@ -619,7 +619,7 @@ the same machinery produces on randomly reassigned — but real —
 architecture portfolios. Crucially it does not rule out confounding by
 indication, because the permutation preserves the mapping from
 architecture to whatever recipient characteristics originally attracted
-it. The complete falsification results are reported in Table A4 (Appendix).
+it. The complete falsification results are reported in Table 8.
 
 ### 5.6 Procurement linkage (exploratory)
 
@@ -931,11 +931,17 @@ proprietary or access-restricted microdata are not redistributed.
 
 Table 1. Sample and architecture summary (disbursement-weighted shares, pooled).
 Table 2. Variance decomposition of architecture shares (incremental R² of donor and recipient fixed effects).
-Table 3. Technical-cooperation-share coefficients by lag window (β; country-clustered SE in parentheses; compositional contrast vs omitted aid-type composition).
-Table 4. Falsification suite summary.
+Table 3. Donor/recipient decomposition (full).
+Table 4. Technical-cooperation-share coefficients by lag window (β; country-clustered SE in parentheses; compositional contrast vs omitted aid-type composition).
+Table 5. Full coefficient grid (all terms, outcomes, windows, adjustment sets; first 60 rows).
+Table 6. Adjustment-set sensitivity.
+Table 7. Falsification suite summary.
+Table 8. Falsification results (full).
 
 ## Figures
 
 Figure 1. Disbursement-weighted aid-type and channel shares over time.
-Figure 2. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied).
-Figure 3. Technical-cooperation-share coefficients by outcome window after exposure year (compositional contrast vs omitted aid-type composition; whiskers are 95% CI).
+Figure 2. Distribution of ODA disbursements as a share of recipient GDP (%).
+Figure 3. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied).
+Figure 4. Technical-cooperation-share coefficients by outcome window after exposure year (compositional contrast vs omitted aid-type composition; whiskers are 95% CI).
+Figure 5. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.

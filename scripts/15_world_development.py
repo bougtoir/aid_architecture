@@ -575,11 +575,11 @@ multilateral implementation carries the largest average share
 split between government, NGO, multilateral, and other implementation
 differs widely across dyads and years — precisely the variation the
 decomposition and the outcome regressions exploit. The ODA/GDP
-histogram is shown in Figure A1 (Appendix).
+histogram is shown in Figure 2.
 
 ### 5.2 Donor heterogeneity and the decomposition of architecture
 
-Figure 2 — the paper's central exhibit — shows architecture profiles of the
+Figure 3 — the paper's central exhibit — shows architecture profiles of the
 top-20 donors by ODA volume. The differences are stark and systematic:
 some donors route the bulk of their portfolio through recipient-government
 systems while others work predominantly through multilateral or
@@ -609,7 +609,7 @@ the recipient dimension contributes comparably (incremental recipient R²
 independently predicts the modality mix, consistent with recipients
 differing in implementation capacity, in the projects they can host, and
 in the terms they negotiate. The full donor- and recipient-side
-decomposition for every margin is reported in full (Table A1, Appendix).
+decomposition for every margin is reported in full (Table 3).
 Architecture is therefore jointly produced —
 supplied in systematically different forms by different donors, and
 filtered by recipient context — rather than dictated by either side.
@@ -624,10 +624,10 @@ the modality-level TC share does exhibit.
 
 ### 5.3 Architecture and medium-run outcomes
 
-Table 3 reports the technical-cooperation-share coefficients across lag
+Table 4 reports the technical-cooperation-share coefficients across lag
 windows for the primary outcomes; the full 320-coefficient grid over all
 architecture margins, outcomes, windows, and adjustment sets is
-reported in Table A2 (Appendix). We focus on the TC share because it is the
+reported in Table 5. We focus on the TC share because it is the
 sharpest architectural contrast the data offer: a modality whose stated
 purpose is capacity transfer, measured separately from the
 capacity-relevant question of who implements the underlying projects.
@@ -669,9 +669,9 @@ Discussion.
 
 ### 5.4 Lag structure and sensitivity
 
-Figure 3 shows TC-share coefficients by window in chronological order for
+Figure 4 shows TC-share coefficients by window in chronological order for
 the primary outcomes (secondary outcomes — tax/GDP and electricity access —
-are shown in Figure A2 (Appendix). Two descriptive features stand out. First,
+are shown in Figure 5. Two descriptive features stand out. First,
 the negative point estimates for GDP per capita do not attenuate
 monotonically with horizon: the 6–10-year point estimate is the most
 negative, and we do not read a clean temporal mechanism into the pattern —
@@ -693,11 +693,11 @@ as directional stability, not robustness: the intervals remain broad in
 every adjustment set, and stability of the point-estimate sign is
 consistent both with a weak underlying association and with a stable
 selection pattern. The full adjustment-set sensitivity grid is in the
-sensitivity grid is reported in Table A3 (Appendix).
+sensitivity grid is reported in Table 6.
 
 ### 5.5 Falsification
 
-Table 4 summarizes the pre-registered suite. A lead placebo (architecture
+Table 7 summarizes the pre-registered suite. A lead placebo (architecture
 measured three years after the outcome window) yields β = {lead.beta:.3f}
 (p = {lead.p:.3f}), compatible with zero — future architecture does not
 "explain" past outcomes, so the primary specification is not simply
@@ -716,7 +716,7 @@ the same machinery produces on randomly reassigned — but real —
 architecture portfolios. Crucially it does not rule out confounding by
 indication, because the permutation preserves the mapping from
 architecture to whatever recipient characteristics originally attracted
-it. The complete falsification results are reported in Table A4 (Appendix).
+it. The complete falsification results are reported in Table 8.
 
 ### 5.6 Procurement linkage (exploratory)
 
@@ -991,14 +991,20 @@ proprietary or access-restricted microdata are not redistributed.
 
 Table 1. Sample and architecture summary (disbursement-weighted shares, pooled).
 Table 2. Variance decomposition of architecture shares (incremental R² of donor and recipient fixed effects).
-Table 3. Technical-cooperation-share coefficients by lag window (β; country-clustered SE in parentheses; compositional contrast vs omitted aid-type composition).
-Table 4. Falsification suite summary.
+Table 3. Donor/recipient decomposition (full).
+Table 4. Technical-cooperation-share coefficients by lag window (β; country-clustered SE in parentheses; compositional contrast vs omitted aid-type composition).
+Table 5. Full coefficient grid (all terms, outcomes, windows, adjustment sets; first 60 rows).
+Table 6. Adjustment-set sensitivity.
+Table 7. Falsification suite summary.
+Table 8. Falsification results (full).
 
 ## Figures
 
 Figure 1. Disbursement-weighted aid-type and channel shares over time.
-Figure 2. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied).
-Figure 3. Technical-cooperation-share coefficients by outcome window after exposure year (compositional contrast vs omitted aid-type composition; whiskers are 95% CI).
+Figure 2. Distribution of ODA disbursements as a share of recipient GDP (%).
+Figure 3. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied).
+Figure 4. Technical-cooperation-share coefficients by outcome window after exposure year (compositional contrast vs omitted aid-type composition; whiskers are 95% CI).
+Figure 5. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.
 """
 
 open("manuscript/manuscript_wd.md","w").write(MD)
@@ -1026,11 +1032,18 @@ def add_rich(par,text):
                         if it.startswith("*") and len(it)>2:
                             r=par.add_run(it[1:-1]); r.italic=True
                         elif it: par.add_run(it)
-def md_to_doc(doc, md_text):
+def md_to_doc(doc, md_text, objects=None):
+    used=set()
+    def emit_after(text):
+        if objects:
+            for tok,fn in objects.items():
+                if tok not in used and tok in text:
+                    used.add(tok); fn()
     in_refs=False; para=[]
     def flush():
         if para:
-            p=doc.add_paragraph(); add_rich(p," ".join(para)); para.clear()
+            joined=" ".join(para)
+            p=doc.add_paragraph(); add_rich(p,joined); emit_after(joined); para.clear()
     for ln in md_text.split("\n"):
         s=ln.strip()
         if not s: flush(); continue
@@ -1099,36 +1112,36 @@ def _fig3(outcomes, path):
     plt.tight_layout(); plt.savefig(path,dpi=200); plt.close()
 _fig3(["log_gdppc","gfcf_gdp","manf_gdp"],"results/figures/fig_coef_tc_windows.png")
 _fig3(["tax_gdp","elec_access"],"results/figures/fig_coef_tc_windows_secondary.png")
-FIGS=[("results/figures/fig_architecture_trends.png","Figure 1. Disbursement-weighted aid-type and channel shares over time."),
-      ("results/figures/fig_donor_architecture.png","Figure 2. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied)."),
-      ("results/figures/fig_coef_tc_windows.png","Figure 3. Technical-cooperation-share coefficients on primary outcomes by outcome window (compositional contrast vs the omitted aid-type composition; 95% CI). Secondary outcomes in Figure A2."),
-      ("results/figures/fig_oda_gdp_hist.png","Figure A1. Distribution of ODA disbursements as a share of recipient GDP (%)."),
-      ("results/figures/fig_coef_tc_windows_secondary.png","Figure A2. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI.")]
-
-def build(path, include_tables=True, include_figs=True):
-    doc=styled_doc(); md_to_doc(doc,MD)
-    if include_tables:
-        doc.add_heading("Tables",level=1)
-        for cap,df in [("Table 1. Sample and architecture summary.",t1),
-                       ("Table 2. Variance decomposition of architecture shares.",t2),
-                       ("Table 3. TC-share coefficients by lag window (β; SE).",t3),
-                       ("Table 4. Falsification suite.",t4)]:
-            doc.add_paragraph(cap).runs[0].bold=True
+def build(path):
+    doc=styled_doc()
+    def tab_obj(cap,df):
+        def fn():
+            p=doc.add_paragraph(); p.add_run(cap).bold=True
             add_df_table(doc,df)
-        doc.add_heading("Appendix",level=1)
-        for cap,df in [("Table A1. Donor/recipient decomposition (full).",dec.round(4)),
-                       ("Table A2. Full coefficient grid (all terms, outcomes, windows, adjustment sets; first 60 rows).",res.head(60).round(4)),
-                       ("Table A3. Adjustment-set sensitivity.",stab.round(4)),
-                       ("Table A4. Falsification results (full).",fal.round(4))]:
-            doc.add_paragraph(cap).runs[0].bold=True
-            add_df_table(doc,df)
-    if include_figs:
-        doc.add_heading("Figures",level=1)
-        for fp,cap in FIGS:
+        return fn
+    def fig_obj(fp,cap):
+        def fn():
             if os.path.exists(fp):
                 doc.add_picture(fp,width=Inches(6.0))
                 doc.paragraphs[-1].alignment=WD_ALIGN_PARAGRAPH.CENTER
                 doc.add_paragraph(cap)
+        return fn
+    objects={
+        "Figure 1":fig_obj("results/figures/fig_architecture_trends.png","Figure 1. Disbursement-weighted aid-type and channel shares over time."),
+        "Figure 2":fig_obj("results/figures/fig_oda_gdp_hist.png","Figure 2. Distribution of ODA disbursements as a share of recipient GDP (%)."),
+        "Figure 3":fig_obj("results/figures/fig_donor_architecture.png","Figure 3. Aid-architecture shares of the top-20 donors by ODA volume (descriptive; no quality ranking implied)."),
+        "Figure 4":fig_obj("results/figures/fig_coef_tc_windows.png","Figure 4. Technical-cooperation-share coefficients on primary outcomes by outcome window (compositional contrast vs the omitted aid-type composition; 95% CI). Secondary outcomes in Figure 5."),
+        "Figure 5":fig_obj("results/figures/fig_coef_tc_windows_secondary.png","Figure 5. TC-share coefficients on secondary outcomes (tax/GDP, electricity access), by outcome window; 95% CI."),
+        "Table 1":tab_obj("Table 1. Sample and architecture summary.",t1),
+        "Table 2":tab_obj("Table 2. Variance decomposition of architecture shares.",t2),
+        "Table 3":tab_obj("Table 3. Donor/recipient decomposition (full).",dec.round(4)),
+        "Table 4":tab_obj("Table 4. TC-share coefficients by lag window (β; SE).",t3),
+        "Table 5":tab_obj("Table 5. Full coefficient grid (all terms, outcomes, windows, adjustment sets; first 60 rows).",res.head(60).round(4)),
+        "Table 6":tab_obj("Table 6. Adjustment-set sensitivity.",stab.round(4)),
+        "Table 7":tab_obj("Table 7. Falsification suite.",t4),
+        "Table 8":tab_obj("Table 8. Falsification results (full).",fal.round(4)),
+    }
+    md_to_doc(doc,MD,objects)
     doc.save(path); print(path,os.path.getsize(path))
 
 # unblinded = same text (no author block fabricated) + note; blinded identical
