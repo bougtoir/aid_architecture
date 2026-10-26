@@ -608,7 +608,9 @@ the recipient dimension contributes comparably (incremental recipient R²
 {dx('share_aidtype_project').incr_r2_donor:.3f}): which recipient a donor serves
 independently predicts the modality mix, consistent with recipients
 differing in implementation capacity, in the projects they can host, and
-in the terms they negotiate. Architecture is therefore jointly produced —
+in the terms they negotiate. The full donor- and recipient-side
+decomposition for every margin is reported in the Supplement
+(Table S2). Architecture is therefore jointly produced —
 supplied in systematically different forms by different donors, and
 filtered by recipient context — rather than dictated by either side.
 
@@ -690,7 +692,8 @@ manufacturing coefficient stays in a narrow negative range
 as directional stability, not robustness: the intervals remain broad in
 every adjustment set, and stability of the point-estimate sign is
 consistent both with a weak underlying association and with a stable
-selection pattern.
+selection pattern. The full adjustment-set sensitivity grid is in the
+Supplement (Table S3).
 
 ### 5.5 Falsification
 
@@ -713,7 +716,7 @@ the same machinery produces on randomly reassigned — but real —
 architecture portfolios. Crucially it does not rule out confounding by
 indication, because the permutation preserves the mapping from
 architecture to whatever recipient characteristics originally attracted
-it.
+it. The complete falsification results are in the Supplement (Table S4).
 
 ### 5.6 Procurement linkage (exploratory)
 

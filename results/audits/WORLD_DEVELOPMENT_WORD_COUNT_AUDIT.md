@@ -1,7 +1,7 @@
 # World Development word-count expansion audit
 
 - Original main-text word count (Introduction-Conclusion): ~1,660
-- Revised main-text word count (Introduction-Conclusion): 6918
+- Revised main-text word count (Introduction-Conclusion): 6955
 - Count method: whitespace-split tokens of manuscript_wd.md from the
   '## 1. Introduction' heading to the end of '## 7. Conclusion' (immediately
   before '## Data availability statement'); markdown section headings included,
